@@ -8,6 +8,14 @@
     <artifactId>DotaTracker</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <pluginManagement>
             <plugins>
@@ -20,9 +28,11 @@
                         <target>1.8</target>
                     </configuration>
                 </plugin>
+
             </plugins>
         </pluginManagement>
     </build>
+
 
     <scm>
         <connection>scm:git:https://github.com/TakiuGit/DotaTracker</connection>
@@ -31,4 +41,6 @@
     </scm>
 
 
+
 </project>
+
