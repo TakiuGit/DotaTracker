@@ -9,7 +9,7 @@ import java.net.URL;
  */
 public class DotaReader {
 
-    public void download(String url )
+public void download(String url )
     {
         download(url, Constant.FILE_NAME);
     }

@@ -9,8 +9,12 @@ public class Main {
         DotaReader reader = new DotaReader();
         //        reader.download("https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v0001/?"+ Constant.STEAM_KEY);
         Heroes h = new Heroes("npc_dota_hero_drow_ranger",6);
-        System.out.println(h.getName());
 
+        HeroesList list = new HeroesList();
+        list.display();
+
+        System.out.println(h.getName());
+        System.out.println(h.getImgUrl());
 
     }
 }
