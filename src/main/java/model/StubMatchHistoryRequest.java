@@ -7,5 +7,5 @@ import org.codehaus.jackson.annotate.JsonProperty;
  */
 public class StubMatchHistoryRequest {
     @JsonProperty("result")
-    StubMatchHistoryStatus request;
+    StubMatchHistory request;
 }
