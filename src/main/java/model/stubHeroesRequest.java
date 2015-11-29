@@ -7,5 +7,5 @@ import org.codehaus.jackson.annotate.JsonProperty;
  */
 public class stubHeroesRequest {
     @JsonProperty("result")
-    public stubHeroesListTest result;
+    public StubHeroesList result;
 }

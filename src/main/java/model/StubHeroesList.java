@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by paulu_000 on 25/11/2015.
  */
-public class stubHeroesListTest {
+public class StubHeroesList {
     @JsonProperty("heroes")
     public List<Heroes> heroes;
     @JsonProperty("status")
