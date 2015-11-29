@@ -29,7 +29,7 @@ public class Items {
 
         try {
             JsonParser jParser = jfactory.createJsonParser(new File(fileName));
-            stubItemsRequestTest request = mapper.readValue(jParser, stubItemsRequestTest.class);
+            StubItemsRequest request = mapper.readValue(jParser, StubItemsRequest.class);
             items.addAll(request.items.items);
         } catch (IOException e) {
             e.printStackTrace();

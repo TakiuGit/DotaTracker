@@ -28,7 +28,7 @@ public class HeroesList {
         ObjectMapper mapper = new ObjectMapper();
         try {
             JsonParser jParser = jfactory.createJsonParser(new File("list_heroes.json"));
-            stubHeroesRequestTest list = mapper.readValue(jParser, stubHeroesRequestTest.class);
+            StubHeroesRequest list = mapper.readValue(jParser, StubHeroesRequest.class);
             listHeroes.addAll(list.result.heroes);
         } catch (IOException e) {
             e.printStackTrace();
