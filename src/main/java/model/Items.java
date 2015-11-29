@@ -2,7 +2,6 @@ package model;
 
 import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.File;
@@ -30,7 +29,7 @@ public class Items {
 
         try {
             JsonParser jParser = jfactory.createJsonParser(new File(fileName));
-            stubItemsRequest request = mapper.readValue(jParser, stubItemsRequest.class);
+            stubItemsRequestTest request = mapper.readValue(jParser, stubItemsRequestTest.class);
             items.addAll(request.items.items);
         } catch (IOException e) {
             e.printStackTrace();

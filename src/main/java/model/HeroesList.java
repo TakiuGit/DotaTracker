@@ -1,11 +1,8 @@
 package model;
 
 import org.codehaus.jackson.JsonFactory;
-import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.JsonToken;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,7 +28,7 @@ public class HeroesList {
         ObjectMapper mapper = new ObjectMapper();
         try {
             JsonParser jParser = jfactory.createJsonParser(new File("list_heroes.json"));
-            stubHeroesRequest list = mapper.readValue(jParser,stubHeroesRequest.class);
+            stubHeroesRequestTest list = mapper.readValue(jParser, stubHeroesRequestTest.class);
             listHeroes.addAll(list.result.heroes);
         } catch (IOException e) {
             e.printStackTrace();

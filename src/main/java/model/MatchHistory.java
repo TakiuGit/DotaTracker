@@ -42,7 +42,7 @@ public class MatchHistory {
         try {
             while (true) {
                 JsonParser jParser = jfactory.createJsonParser(new File(fileName));
-                stubMatchHistoryRequest request = mapper.readValue(jParser, stubMatchHistoryRequest.class);
+                stubMatchHistoryRequestTest request = mapper.readValue(jParser, stubMatchHistoryRequestTest.class);
                 listMatch.addAll(request.request.matches);
                 System.out.println("Match add : " + request.request.matches.size());
                 if(request.request.resultsRemaining  == 0)

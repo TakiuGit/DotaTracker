@@ -3,9 +3,9 @@ package model;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
- * Created by paulu_000 on 25/11/2015.
+ * Created by paulu_000 on 29/11/2015.
  */
-public class stubHeroesRequest {
+public class stubItemsRequestTest {
     @JsonProperty("result")
-    public StubHeroesList result;
+    StubItems items;
 }

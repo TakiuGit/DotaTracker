@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by paulu_000 on 25/11/2015.
  */
-public class stubMatchHistoryStatus {
+public class stubMatchHistoryStatusTest {
     @JsonProperty("status")
     int status;
     @JsonProperty("num_results")
