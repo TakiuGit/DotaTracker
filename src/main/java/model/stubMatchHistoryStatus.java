@@ -12,10 +12,13 @@ public class stubMatchHistoryStatus {
     int status;
     @JsonProperty("num_results")
     int numResults;
-    @JsonProperty("totals_results")
+    @JsonProperty("total_results")
     int totalsResults;
     @JsonProperty("results_remaining")
     int resultsRemaining;
-    @JsonProperty("mathes")
+    @JsonProperty("matches")
     List<Match> matches;
+
+    @JsonProperty("statusDetail")
+    String statusDetail ;
 }

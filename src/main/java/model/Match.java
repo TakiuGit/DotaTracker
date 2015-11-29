@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Match {
     @JsonProperty("match_id")
-    String matchId;
+    long matchId;
     @JsonProperty("match_seq_num")
     long matchSeqNum;
     @JsonProperty("start_time")

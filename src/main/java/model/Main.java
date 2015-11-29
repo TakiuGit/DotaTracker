@@ -6,15 +6,18 @@ package model;
 public class Main {
 
     public static void main (String[] args){
-        DotaReader reader = new DotaReader();
-        //        reader.download("https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v0001/?"+ Constant.STEAM_KEY);
-        Heroes h = new Heroes("npc_dota_hero_drow_ranger",6);
 
+        /*
         HeroesList list = new HeroesList();
         list.display();
+        */
 
-        System.out.println(h.getName());
-        System.out.println(h.getImgUrl());
+        /*
+        MatchHistory history = new MatchHistory(76561198037671458L);
+        System.out.println("NbMatchFound : "+ history.getListMatch().size());
+        */
 
+        Items items = new Items();
+        System.out.println("Nb items found : " + items.getItems().size());
     }
 }
