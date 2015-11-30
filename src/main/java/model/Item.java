@@ -7,15 +7,58 @@ import org.codehaus.jackson.annotate.JsonProperty;
  */
 public class Item {
     @JsonProperty("id")
-    int id;
+    private int id;
     @JsonProperty("name")
-    String name;
+    private String name;
     @JsonProperty("cost")
-    int cost;
+    private int cost;
     @JsonProperty("secret_shop")
-    boolean secretShop;
+    private boolean secretShop;
     @JsonProperty("side_shop")
-    boolean sideShop;
+    private boolean sideShop;
     @JsonProperty("recipe")
-    boolean recipe;
+    private boolean recipe;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getShortName() {
+        return name.substring(5);
+    }
+
+    public String getClearName()
+    {
+        return getShortName().replace('_',' ');
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public boolean isRecipe() {
+        return recipe;
+    }
+
+    public boolean isSecretShop() {
+        return secretShop;
+    }
+
+    public boolean isSideShop() {
+        return sideShop;
+    }
+
+    public String getImageUrl()
+    {
+        return "http://cdn.dota2.com/apps/dota2/images/items/" + getShortName() +"_lg.png";
+    }
+
+    @Override
+    public String toString() {
+        return "Item : " + id + " " + getClearName();
+    }
 }

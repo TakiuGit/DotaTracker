@@ -14,7 +14,7 @@ import java.util.List;
  * Created by paulu_000 on 25/11/2015.
  */
 public class MatchHistory {
-    List<Match> listMatch = new ArrayList<Match>();
+    private List<Match> listMatch = new ArrayList<Match>();
 
     // Must be a steam 32  bits ID
     // Load the last 100 match.
@@ -47,7 +47,7 @@ public class MatchHistory {
                 System.out.println("Match add : " + request.request.matches.size());
                 if(request.request.resultsRemaining  == 0)
                     break;
-                long lastMatchIdGet =  request.request.matches.get(request.request.matches.size()-1).matchId;
+                long lastMatchIdGet =  request.request.matches.get(request.request.matches.size()-1).getMatchId();
                 reader.download(Constant.MATCH_HISTORY_URL + Constant.STEAM_KEY + "&account_id=" + account_id + "&start_at_match_id=" + lastMatchIdGet,fileName);
             }
         } catch (IOException e) {

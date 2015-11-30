@@ -39,4 +39,14 @@ public class Items {
     public List<Item> getItems() {
         return items;
     }
+
+    public Item getItem(int id)
+    {
+        for(Item i : items)
+        {
+            if (i.getId() == id)
+                return i;
+        }
+        return null;
+    }
 }

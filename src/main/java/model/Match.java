@@ -9,18 +9,45 @@ import java.util.List;
  */
 public class Match {
     @JsonProperty("match_id")
-    long matchId;
+    private long matchId;
     @JsonProperty("match_seq_num")
-    long matchSeqNum;
+    private long matchSeqNum;
     @JsonProperty("start_time")
-    long startTime;
+    private long startTime;
     @JsonProperty("lobby_type")
-    int lobbyType;
+    private int lobbyType;
     @JsonProperty("radiant_team_id")
-    int radiantTeamId;
+    private int radiantTeamId;
     @JsonProperty("dire_team_id")
-    int direTeamId;
+    private int direTeamId;
     @JsonProperty("players")
-    List<MatchPlayer> players;
+    private List<MatchPlayer> players;
 
+    public int getDireTeamId() {
+        return direTeamId;
+    }
+
+    public int getLobbyType() {
+        return lobbyType;
+    }
+
+    public int getRadiantTeamId() {
+        return radiantTeamId;
+    }
+
+    public List<MatchPlayer> getPlayers() {
+        return players;
+    }
+
+    public long getMatchId() {
+        return matchId;
+    }
+
+    public long getMatchSeqNum() {
+        return matchSeqNum;
+    }
+
+    public long getStartTime() {
+        return startTime;
+    }
 }
