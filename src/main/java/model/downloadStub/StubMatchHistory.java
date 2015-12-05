@@ -1,5 +1,6 @@
-package model;
+package model.downloadStub;
 
+import model.Match;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 import java.util.List;
@@ -9,16 +10,16 @@ import java.util.List;
  */
 public class StubMatchHistory {
     @JsonProperty("status")
-    int status;
+    public int status;
     @JsonProperty("num_results")
-    int numResults;
+    public int numResults;
     @JsonProperty("total_results")
-    int totalsResults;
+    public int totalsResults;
     @JsonProperty("results_remaining")
-    int resultsRemaining;
+    public int resultsRemaining;
     @JsonProperty("matches")
-    List<Match> matches;
+    public List<Match> matches;
 
     @JsonProperty("statusDetail")
-    String statusDetail ;
+    public String statusDetail ;
 }

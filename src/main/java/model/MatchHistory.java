@@ -1,5 +1,6 @@
 package model;
 
+import model.downloadStub.StubMatchHistoryRequest;
 import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -7,14 +8,15 @@ import org.codehaus.jackson.map.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
  * Created by paulu_000 on 25/11/2015.
  */
 public class MatchHistory {
+
     private List<Match> listMatch = new ArrayList<Match>();
+    long accountId = 0;
 
     // Must be a steam 32  bits ID
     // Load the last 100 match.
@@ -24,11 +26,10 @@ public class MatchHistory {
         {
             account_id -= 76561197960265728L;
         }
+        accountId = account_id;
         String fileName = "match_history_"+ account_id +".json";
 
         DotaReader reader = new DotaReader();
-        Date now = new Date();
-        System.out.println("Time : " + now.getTime());
 
         String url = Constant.MATCH_HISTORY_URL + Constant.STEAM_KEY + "&account_id=" + account_id;
         System.out.println("Dl string : "+ url);
@@ -57,5 +58,30 @@ public class MatchHistory {
 
     public List<Match> getListMatch() {
         return listMatch;
+    }
+
+    public float getWinRate()
+    {
+        int nbWin = 0;
+        int count =0;
+        for(Match m : listMatch){
+            System.out.println("read math detail : " + m.getMatchId() +"("+count +"/"+ listMatch.size()+ ")");
+            ++count;
+            MatchDetail detail = m.getMatchDetail();
+            for(PlayerMatchInfo p : detail.players) {
+                if (p.accountId == this.accountId) {
+                    if (((p.playerSlot & (1 << 0)) != 0) == detail.radiantWin)
+                        ++nbWin;
+                }
+            }
+        }
+
+        return ((float)nbWin) / ((float)listMatch.size());
+    }
+
+    public float getWinRate(int objectId)
+    {
+        //TODO
+        return 0;
     }
 }

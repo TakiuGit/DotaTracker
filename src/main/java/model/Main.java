@@ -15,11 +15,14 @@ public class Main {
         list.display();
         */
 
-        /*
+
         MatchHistory history = new MatchHistory(76561198037671458L);
         System.out.println("NbMatchFound : "+ history.getListMatch().size());
-        */
 
+        float winRate = history.getWinRate();
+        System.out.println("Win rate : " + winRate);
+
+/*
         Items items = new Items();
         System.out.println("Nb items found : " + items.getItems().size());
         for(Item i : items.items)
@@ -28,6 +31,7 @@ public class Main {
         }
 
         System.out.println(items.getItem(15));
+        */
     }
 }
 

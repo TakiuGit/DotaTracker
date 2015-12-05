@@ -1,5 +1,6 @@
-package model;
+package model.downloadStub;
 
+import model.Heroes;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
@@ -12,9 +13,9 @@ public class StubHeroesList {
     @JsonProperty("heroes")
     public List<Heroes> heroes;
     @JsonProperty("status")
-    String status;
+    public String status;
     @JsonProperty("count")
-    String count;
+    public String count;
 
     public List<Heroes> getHeroes() {
         return heroes;

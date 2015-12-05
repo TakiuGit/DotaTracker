@@ -1,5 +1,6 @@
 package model;
 
+import model.downloadStub.StubHeroesRequest;
 import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.ObjectMapper;

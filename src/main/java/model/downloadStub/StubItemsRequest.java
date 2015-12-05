@@ -1,4 +1,4 @@
-package model;
+package model.downloadStub;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
@@ -7,5 +7,5 @@ import org.codehaus.jackson.annotate.JsonProperty;
  */
 public class StubItemsRequest {
     @JsonProperty("result")
-    StubItems items;
+    public StubItems items;
 }

@@ -1,4 +1,4 @@
-package model;
+package model.downloadStub;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 

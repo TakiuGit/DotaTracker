@@ -1,5 +1,6 @@
-package model;
+package model.downloadStub;
 
+import model.Item;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 import java.util.ArrayList;
@@ -12,5 +13,5 @@ public class StubItems {
     @JsonProperty("items")
     public List<Item> items = new ArrayList<Item>();
     @JsonProperty("status")
-    int status;
+    public int status;
 }

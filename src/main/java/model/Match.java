@@ -23,6 +23,14 @@ public class Match {
     @JsonProperty("players")
     private List<MatchPlayer> players;
 
+    private MatchDetail matchsDetail;
+
+    public MatchDetail getMatchDetail(){
+        if(matchsDetail == null)
+            matchsDetail = new MatchDetail(this.matchId);
+        return matchsDetail;
+    }
+
     public int getDireTeamId() {
         return direTeamId;
     }
