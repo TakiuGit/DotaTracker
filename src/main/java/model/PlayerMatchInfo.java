@@ -10,54 +10,161 @@ import java.util.List;
  */
 public class PlayerMatchInfo {
     @JsonProperty("account_id")
-    long accountId;
+    private long accountId;
     @JsonProperty("player_slot")
-    byte playerSlot;
+    private int playerSlot;
     @JsonProperty("hero_id")
-    int heroId;
+    private int heroId;
     @JsonProperty("item_0")
-    int itemZero;
+    private int itemZero;
     @JsonProperty("item_1")
-    int itemOne;
+    private int itemOne;
     @JsonProperty("item_2")
-    int itemTwo;
+    private int itemTwo;
     @JsonProperty("item_3")
-    int itemThree;
+    private int itemThree;
     @JsonProperty("item_4")
-    int itemFour;
+    private int itemFour;
     @JsonProperty("item_5")
-    int itemFive;
+    private int itemFive;
     @JsonProperty("kills")
-    int kills;
+    private int kills;
     @JsonProperty("deaths")
-    int deaths;
+    private int deaths;
     @JsonProperty("assists")
-    int assists;
+    private int assists;
     @JsonProperty("leaver_status")
-    int leaverStatus;
+    private int leaverStatus;
     @JsonProperty("gold")
-    int gold;
+    private int gold;
     @JsonProperty("last_hits")
-    int lastHits;
+    private int lastHits;
     @JsonProperty("denies")
-    int denies;
+    private int denies;
     @JsonProperty("gold_per_min")
-    int goldPerMin;
+    private int goldPerMin;
     @JsonProperty("xp_per_min")
-    int xpPerMin;
+    private int xpPerMin;
     @JsonProperty("gold_spent")
-    int goldSpent;
+    private int goldSpent;
     @JsonProperty("hero_damage")
-    int heroDamage;
+    private int heroDamage;
     @JsonProperty("tower_damage")
-    int towerDamage;
+    private int towerDamage;
     @JsonProperty("hero_healing")
-    int heroHealing;
+    private int heroHealing;
     @JsonProperty("level")
-    int level;
+    private int level;
     @JsonProperty("ability_upgrades")
-    List<AbilityUpgrade> abilityUpgradeList  = new ArrayList<AbilityUpgrade>();
+    private List<AbilityUpgrade> abilityUpgradeList  = new ArrayList<AbilityUpgrade>();
     @JsonProperty("additional_units")
-    public List<AdditionalUnit> additionalUnits;
+    private  List<AdditionalUnit> additionalUnits;
 
+    public long getAccountId() {
+        return accountId;
+    }
+
+    public int getPlayerSlot() {
+        return playerSlot;
+    }
+
+    public int getHeroId() {
+        return heroId;
+    }
+
+    public void setHeroId(int heroId) {
+        this.heroId = heroId;
+    }
+
+    public int getItemZero() {
+        return itemZero;
+    }
+
+    public int getItemOne() {
+        return itemOne;
+    }
+
+    public int getItemTwo() {
+        return itemTwo;
+    }
+
+    public int getItemThree() {
+        return itemThree;
+    }
+
+    public int getItemFour() {
+        return itemFour;
+    }
+
+    public int getItemFive() {
+        return itemFive;
+    }
+
+    public int getKills() {
+        return kills;
+    }
+
+    public int getDeaths() {
+        return deaths;
+    }
+
+    public int getAssists() {
+        return assists;
+    }
+
+    public int getLeaverStatus() {
+        return leaverStatus;
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public int getLastHits() {
+        return lastHits;
+    }
+
+    public int getDenies() {
+        return denies;
+    }
+
+    public int getGoldPerMin() {
+        return goldPerMin;
+    }
+
+    public void setGoldPerMin(int goldPerMin) {
+        this.goldPerMin = goldPerMin;
+    }
+
+    public int getXpPerMin() {
+        return xpPerMin;
+    }
+
+    public int getGoldSpent() {
+        return goldSpent;
+    }
+
+    public int getHeroDamage() {
+        return heroDamage;
+    }
+
+    public int getTowerDamage() {
+        return towerDamage;
+    }
+
+    public int getHeroHealing() {
+        return heroHealing;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public List<AbilityUpgrade> getAbilityUpgradeList() {
+        return abilityUpgradeList;
+    }
+
+    public List<AdditionalUnit> getAdditionalUnits() {
+        return additionalUnits;
+    }
 }

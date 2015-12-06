@@ -3,17 +3,23 @@ package view;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import model.*;
 import model.viewStub.StubHeroView;
@@ -55,6 +61,36 @@ public class MainApp extends Application {
         hbox.setSpacing(24);
         hbox.setPadding(new Insets(10, 50, 10, 50));
 
+        createLeftPane(hbox);
+        createRigthPane(hbox);
+
+        ((Group) scene.getRoot()).getChildren().addAll(hbox);
+        stage.setScene(scene);
+        stage.show();//we display the stage
+    }
+
+    private void createRigthPane(HBox hbox) {
+        VBox v = new VBox();
+        hbox.getChildren().add(v);
+        v.setSpacing(15);
+
+        createHistoryTable(v);
+        loadHistoryTable();
+
+        createDetailButton(v);
+    }
+    private void createDetailButton(Pane root) {
+        Button button = new Button("Details");
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                createDetailView((StubMatchView) matchTable.getSelectionModel().getSelectedItem());
+            }
+        });
+        root.getChildren().add(button);
+    }
+
+    private void createLeftPane(Pane root) {
         final VBox vbox = new VBox();
         vbox.setSpacing(5);
 
@@ -64,32 +100,8 @@ public class MainApp extends Application {
         createHeroTable(vbox);
         loadHeroesInformation();
 
-        hbox.getChildren().add(vbox);
-
-        createHistoryTable(hbox);
-        loadHistoryTable();
-
-        ((Group) scene.getRoot()).getChildren().addAll(hbox); //here we add the tab to the vew context
-/*
-        MenuBar menuBar = new MenuBar();
-
-        // --- Menu File
-        Menu menuFile = new Menu("Items");
-
-        // --- Menu Edit
-        Menu menuEdit = new Menu("WinRate");
-
-        // --- Menu View
-        Menu menuView = new Menu("AllTymeStats");
-
-        menuBar.getMenus().addAll(menuFile, menuEdit, menuView);
-
-        ((Group) scene.getRoot()).getChildren().addAll(menuBar); //same here for the menu
-*/
-        stage.setScene(scene);
-        stage.show();//we display the stage
+        root.getChildren().add(vbox);
     }
-
 
     private void createHeroTable(Pane root) {
 
@@ -203,10 +215,142 @@ public class MainApp extends Application {
         for(Match m : history.getListMatch()){
             matchData.add(matchData.size(),
                     new StubMatchView(m.getMatchId(),
-                            new Date(m.getStartTime()).toString()
+                            new Date(m.getStartTime()*1000).toString()
                             ,m.getLobbyType(),
                             m.getPlayers().size()));
         }
     }
 
+    private void createDetailView(StubMatchView selectedItem) {
+        if(selectedItem == null)
+            return;
+        Stage stageErasing = new Stage();
+
+        VBox root = new VBox();
+        root.setSpacing(25);
+        root.setPadding((new Insets(10, 10, 10, 10)));
+
+        Label title = new Label("Match " + selectedItem.getId());
+        title.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+
+        MatchDetail detail = new MatchDetail(selectedItem.getId());
+
+        GridPane grid = new GridPane();
+        grid.setHgap(12);
+        grid.setVgap(8);
+        grid.setStyle("-fx-background-color: #BBBBBBBB;");
+        grid.setPadding(new Insets(10, 10, 10, 10));
+        addTabHeader(grid);
+        int rowNumber = 1;
+        for(PlayerMatchInfo p : detail.getPlayers()){
+            addPlayersRow(grid, p,rowNumber);
+            ++rowNumber;
+        }
+
+        root.getChildren().addAll(title,grid);
+
+        Scene sceneErasing = new Scene(root);
+        stageErasing.setScene(sceneErasing);
+        stageErasing.show();
+    }
+
+    private void addTabHeader(GridPane root) {
+        Font f = Font.font("Arial", FontWeight.BOLD, 14);
+
+        Label playerLab = new Label("Player");
+        playerLab.setFont(f);
+        root.add(playerLab,0,0);
+
+        Label levelLabel = new Label("Level");
+        levelLabel.setFont(f);
+        root.add(levelLabel,1,0);
+
+        Label killLabel = new Label("Kill");
+        killLabel.setFont(f);
+        root.add(killLabel,2,0);
+
+        Label deathLabel = new Label("Death");
+        deathLabel.setFont(f);
+        root.add(deathLabel,3,0);
+
+        Label assistLabel = new Label("Assist");
+        assistLabel.setFont(f);
+        root.add(assistLabel,4,0);
+
+        Label goldLabel = new Label("Gold");
+        goldLabel.setFont(f);
+        root.add(goldLabel,5,0);
+
+        Label xpmLabel = new Label("XPM");
+        xpmLabel.setFont(f);
+        root.add(xpmLabel,6,0);
+
+        Label gpmLabel = new Label("GPM");
+        gpmLabel.setFont(f);
+        root.add(gpmLabel,7,0);
+
+        Label heroDamage = new Label("HD");
+        heroDamage.setFont(f);
+        root.add(heroDamage,8,0);
+
+        Label healingDeal = new Label("HH");
+        healingDeal.setFont(f);
+        root.add(healingDeal,9,0);
+
+        Label towerDamage = new Label("TD");
+        towerDamage.setFont(f);
+        root.add(towerDamage,10,0);
+    }
+
+    private void addPlayersRow(GridPane root ,PlayerMatchInfo p, int rowNumber) {
+        Font f = Font.font("Arial", 14);
+
+        Label playerLab = new Label(Long.toString( p.getAccountId()));
+        playerLab.setFont(f);
+        if((p.getPlayerSlot()  >>> 7) != 0)
+            playerLab.setTextFill(Color.RED);
+        else
+            playerLab.setTextFill(Color.GREEN);
+        root.add(playerLab,0,rowNumber);
+
+        Label levelLabel = new Label(Integer.toString(p.getLevel()));
+        levelLabel.setFont(f);
+        root.add(levelLabel,1,rowNumber);
+
+        Label killLabel = new Label(Integer.toString(p.getKills()));
+        killLabel.setFont(f);
+        root.add(killLabel,2,rowNumber);
+
+        Label deathLabel = new Label(Integer.toString(p.getDeaths()));
+        deathLabel.setFont(f);
+        root.add(deathLabel,3,rowNumber);
+
+        Label assistLabel = new Label(Integer.toString(p.getAssists()));
+        assistLabel.setFont(f);
+        root.add(assistLabel,4,rowNumber);
+
+        Label goldLabel = new Label(Integer.toString(p.getGold() + p.getGoldSpent()));
+        goldLabel.setFont(f);
+        root.add(goldLabel,5,rowNumber);
+
+        Label xpmLabel = new Label(Integer.toString(p.getXpPerMin()));
+        xpmLabel.setFont(f);
+        root.add(xpmLabel,6,rowNumber);
+
+        Label gpmLabel = new Label(Integer.toString(p.getGoldPerMin()));
+        gpmLabel.setFont(f);
+        root.add(gpmLabel,7,rowNumber);
+
+        Label heroDamage = new Label(Integer.toString(p.getHeroDamage()));
+        heroDamage.setFont(f);
+        root.add(heroDamage,8,rowNumber);
+
+        Label healingDeal = new Label(Integer.toString(p.getHeroHealing()));
+        healingDeal.setFont(f);
+        root.add(healingDeal,9,rowNumber);
+
+        Label towerDamage = new Label(Integer.toString(p.getTowerDamage()));
+        towerDamage.setFont(f);
+        root.add(towerDamage,10,rowNumber);
+    }
 }

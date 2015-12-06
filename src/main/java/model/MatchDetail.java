@@ -15,32 +15,32 @@ import java.util.List;
  * File created by Paul NOFERI on 05/12/2015 at ESILV
  */
 public class MatchDetail {
-    List<PlayerMatchInfo> players = new ArrayList<>();
-    boolean radiantWin;
-    int duration;
-    long startTime;
-    long matchId;
-    long matchSeqNum;
-    int towerStatusRadiant;
-    int towerStatusDire;
-    int barracksStatusRadiant;
-    int barracksStatusDire;
-    int cluster;
-    int fisrtBloodTime;
-    int lobbyType;
-    int humanPlayer;
-    int leagueId;
-    int positivesVotes;
-    int negativesVotes;
-    int gameMode;
-    int engine;
-    int radiantTreamId;
-    String radiantTeamName;
-    long radiantLogo;
-    int radiantTeamComplete;
-    int radiantCaptain;
-    int direCaptain;
-    List<PickBan> picksBans = new ArrayList<>();
+    private List<PlayerMatchInfo> players = new ArrayList<>();
+    private boolean radiantWin;
+    private int duration;
+    private long startTime;
+    private long matchId;
+    private long matchSeqNum;
+    private int towerStatusRadiant;
+    private int towerStatusDire;
+    private int barracksStatusRadiant;
+    private int barracksStatusDire;
+    private int cluster;
+    private int fisrtBloodTime;
+    private int lobbyType;
+    private int humanPlayer;
+    private int leagueId;
+    private int positivesVotes;
+    private int negativesVotes;
+    private int gameMode;
+    private int engine;
+    private int radiantTreamId;
+    private String radiantTeamName;
+    private long radiantLogo;
+    private int radiantTeamComplete;
+    private int radiantCaptain;
+    private int direCaptain;
+    private List<PickBan> picksBans = new ArrayList<>();
 
     public MatchDetail(long matchId)
     {
@@ -93,5 +93,113 @@ public class MatchDetail {
         this.radiantCaptain = stub.radiantCaptain;
         this.direCaptain = stub.direCaptain;
         this.picksBans = stub.picksBans;
+    }
+
+    public List<PlayerMatchInfo> getPlayers() {
+        return players;
+    }
+
+    public boolean isRadiantWin() {
+        return radiantWin;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public long getStartTime() {
+        return startTime;
+    }
+
+    public long getMatchId() {
+        return matchId;
+    }
+
+    public long getMatchSeqNum() {
+        return matchSeqNum;
+    }
+
+    public int getTowerStatusRadiant() {
+        return towerStatusRadiant;
+    }
+
+    public int getTowerStatusDire() {
+        return towerStatusDire;
+    }
+
+    public int getBarracksStatusRadiant() {
+        return barracksStatusRadiant;
+    }
+
+    public int getBarracksStatusDire() {
+        return barracksStatusDire;
+    }
+
+    public int getCluster() {
+        return cluster;
+    }
+
+    public int getFisrtBloodTime() {
+        return fisrtBloodTime;
+    }
+
+    public int getLobbyType() {
+        return lobbyType;
+    }
+
+    public int getHumanPlayer() {
+        return humanPlayer;
+    }
+
+    public int getLeagueId() {
+        return leagueId;
+    }
+
+    public int getPositivesVotes() {
+        return positivesVotes;
+    }
+
+    public int getNegativesVotes() {
+        return negativesVotes;
+    }
+
+    public int getGameMode() {
+        return gameMode;
+    }
+
+    public int getEngine() {
+        return engine;
+    }
+
+    public int getRadiantTreamId() {
+        return radiantTreamId;
+    }
+
+    public String getRadiantTeamName() {
+        return radiantTeamName;
+    }
+
+    public void setRadiantTeamName(String radiantTeamName) {
+        this.radiantTeamName = radiantTeamName;
+    }
+
+    public long getRadiantLogo() {
+        return radiantLogo;
+    }
+
+    public int getRadiantTeamComplete() {
+        return radiantTeamComplete;
+    }
+
+    public int getRadiantCaptain() {
+        return radiantCaptain;
+    }
+
+    public int getDireCaptain() {
+        return direCaptain;
+    }
+
+    public List<PickBan> getPicksBans() {
+        return picksBans;
     }
 }

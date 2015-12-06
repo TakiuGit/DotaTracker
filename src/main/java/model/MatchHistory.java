@@ -69,9 +69,9 @@ public class MatchHistory {
             ++count;
             System.out.println("read math detail : " + m.getMatchId() +"("+count +"/"+ listMatch.size()+ ")");
             MatchDetail detail = m.getMatchDetail();
-            for(PlayerMatchInfo p : detail.players) {
-                if (p.accountId == this.accountId) {
-                    if (((p.playerSlot & (1 << 0)) != 0) == detail.radiantWin)
+            for(PlayerMatchInfo p : detail.getPlayers()) {
+                if (p.getAccountId() == this.accountId) {
+                    if (((p.getPlayerSlot() >>> 8) != 0) == detail.isRadiantWin())
                         ++nbWin;
                 }
             }
@@ -88,10 +88,10 @@ public class MatchHistory {
             System.out.println("read math detail : " + m.getMatchId() +"("+count +"/"+ listMatch.size()+ ")");
             ++count;
             MatchDetail detail = m .getMatchDetail();
-            for(PlayerMatchInfo p : detail.players) {
-                if (p.accountId == this.accountId) {
-                    if (((p.playerSlot & (1 << 0)) != 0) == detail.radiantWin)
-                        if(p.itemZero == objectId ||p.itemOne == objectId || p.itemTwo == objectId || p.itemFour == objectId || p.itemThree == objectId ||p.itemFive == objectId )
+            for(PlayerMatchInfo p : detail.getPlayers()) {
+                if (p.getAccountId() == this.accountId) {
+                    if (((p.getPlayerSlot()  >>> 8) != 0) == detail.isRadiantWin())
+                        if(p.getItemZero() == objectId ||p.getItemOne() == objectId || p.getItemTwo() == objectId || p.getItemThree() == objectId || p.getItemFour() == objectId ||p.getItemFive() == objectId )
                              ++nbWin;
                 }
             }
@@ -105,11 +105,11 @@ public class MatchHistory {
         int nbUse = 0;
         for(Match m : listMatch){
             MatchDetail detail = m .getMatchDetail();
-            for(PlayerMatchInfo p : detail.players) {
-                if (p.accountId == this.accountId) {
-                    if(p.itemZero == objectId ||p.itemOne == objectId || p.itemTwo == objectId || p.itemFour == objectId || p.itemThree == objectId ||p.itemFive == objectId ){
+            for(PlayerMatchInfo p : detail.getPlayers()) {
+                if (p.getAccountId() == this.accountId) {
+                    if(p.getItemZero() == objectId ||p.getItemOne() == objectId || p.getItemTwo() == objectId || p.getItemThree() == objectId || p.getItemFour() == objectId ||p.getItemFive() == objectId ){
                         ++nbUse;
-                        if (((p.playerSlot & (1 << 0)) != 0) == detail.radiantWin)
+                        if (((p.getPlayerSlot() & (1 << 0)) != 0) == detail.isRadiantWin())
                             ++nbWin;
                     }
                 }
@@ -128,11 +128,11 @@ public class MatchHistory {
         int nbUse = 0;
         for(Match m : listMatch){
             MatchDetail detail = m .getMatchDetail();
-            for(PlayerMatchInfo p : detail.players) {
-                if (p.accountId == this.accountId) {
-                    if(p.heroId == heroId){
+            for(PlayerMatchInfo p : detail.getPlayers()) {
+                if (p.getAccountId() == this.accountId) {
+                    if(p.getHeroId() == heroId){
                         ++nbUse;
-                        if (((p.playerSlot & (1 << 0)) != 0) == detail.radiantWin)
+                        if (((p.getPlayerSlot() & (1 << 0)) != 0) == detail.isRadiantWin())
                             ++nbWin;
                     }
                 }
