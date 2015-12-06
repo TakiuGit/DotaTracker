@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class StubMatchDetail {
     @JsonProperty("players")
-    List<PlayerMatchInfo> players = new ArrayList<>();
+    public List<PlayerMatchInfo> players = new ArrayList<>();
 
     @JsonProperty("radiant_win")
     public boolean radiantWin;
