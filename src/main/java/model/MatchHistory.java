@@ -1,6 +1,8 @@
 package model;
 
 import model.downloadStub.StubMatchHistoryRequest;
+import model.viewStub.StubHeroView;
+import model.viewStub.StubItemView;
 import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -32,7 +34,6 @@ public class MatchHistory {
         DotaReader reader = new DotaReader();
 
         String url = Constant.MATCH_HISTORY_URL + Constant.STEAM_KEY + "&account_id=" + account_id;
-        System.out.println("Dl string : "+ url);
         reader.download(url ,fileName);
 
         System.out.println(listMatch.size());
@@ -63,10 +64,10 @@ public class MatchHistory {
     public float getWinRate()
     {
         int nbWin = 0;
-        int count =0;
+        int count = 0;
         for(Match m : listMatch){
-            System.out.println("read math detail : " + m.getMatchId() +"("+count +"/"+ listMatch.size()+ ")");
             ++count;
+            System.out.println("read math detail : " + m.getMatchId() +"("+count +"/"+ listMatch.size()+ ")");
             MatchDetail detail = m.getMatchDetail();
             for(PlayerMatchInfo p : detail.players) {
                 if (p.accountId == this.accountId) {
@@ -81,7 +82,66 @@ public class MatchHistory {
 
     public float getWinRate(int objectId)
     {
-        //TODO
-        return 0;
+        int nbWin = 0;
+        int count = 0;
+        for(Match m : listMatch){
+            System.out.println("read math detail : " + m.getMatchId() +"("+count +"/"+ listMatch.size()+ ")");
+            ++count;
+            MatchDetail detail = m .getMatchDetail();
+            for(PlayerMatchInfo p : detail.players) {
+                if (p.accountId == this.accountId) {
+                    if (((p.playerSlot & (1 << 0)) != 0) == detail.radiantWin)
+                        if(p.itemZero == objectId ||p.itemOne == objectId || p.itemTwo == objectId || p.itemFour == objectId || p.itemThree == objectId ||p.itemFive == objectId )
+                             ++nbWin;
+                }
+            }
+        }
+        return (float)nbWin / (float)count;
+    }
+
+    public StubItemView getAllItemsInformationForDisplay(int objectId){
+        System.out.println("Get items informations... id : "+ objectId);
+        int nbWin = 0;
+        int nbUse = 0;
+        for(Match m : listMatch){
+            MatchDetail detail = m .getMatchDetail();
+            for(PlayerMatchInfo p : detail.players) {
+                if (p.accountId == this.accountId) {
+                    if(p.itemZero == objectId ||p.itemOne == objectId || p.itemTwo == objectId || p.itemFour == objectId || p.itemThree == objectId ||p.itemFive == objectId ){
+                        ++nbUse;
+                        if (((p.playerSlot & (1 << 0)) != 0) == detail.radiantWin)
+                            ++nbWin;
+                    }
+                }
+            }
+        }
+
+        Item i = Items.getInstance().getItem(objectId);
+        if(nbUse == 0)
+            nbUse = 1;
+        return new StubItemView(i.getClearName(),objectId, (float)nbWin /(float)nbUse,i.getCost(),nbUse, (float)nbUse/ (float)listMatch.size());
+    }
+
+    public StubHeroView getAllHeroesInformationForDisplay(int heroId) {
+        System.out.println("Get heroes informations... id : "+ heroId);
+        int nbWin = 0;
+        int nbUse = 0;
+        for(Match m : listMatch){
+            MatchDetail detail = m .getMatchDetail();
+            for(PlayerMatchInfo p : detail.players) {
+                if (p.accountId == this.accountId) {
+                    if(p.heroId == heroId){
+                        ++nbUse;
+                        if (((p.playerSlot & (1 << 0)) != 0) == detail.radiantWin)
+                            ++nbWin;
+                    }
+                }
+            }
+        }
+
+        Heroes h = HeroesList.getInstance().getHero(heroId);
+        if(nbUse == 0)
+            nbUse = 1;
+        return new StubHeroView(h.getClearName(),heroId, (float)nbWin /(float)nbUse,nbUse, (float)nbUse/ (float)listMatch.size());
     }
 }

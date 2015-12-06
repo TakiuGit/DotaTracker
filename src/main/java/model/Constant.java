@@ -12,4 +12,5 @@ public class Constant {
     static final String MATCH_HISTORY_URL = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/v001/?";
     static final String ITEM_LIST_URL = "https://api.steampowered.com/IEconDOTA2_570/GetGameItems/V001/?";
     static final String MATCH_DETAIL_URL = "http://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/v1/?";
+    static final String IMG_FOLDER ="image/";
 }

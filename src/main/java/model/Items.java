@@ -16,7 +16,10 @@ import java.util.List;
 public class Items {
     List<Item> items = new ArrayList<Item>();
 
-    public Items()
+
+
+    /** Constructeur privé */
+    private Items()
     {
         String fileName = "item_list.json";
 
@@ -35,6 +38,19 @@ public class Items {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /** Holder */
+    private static class SingletonHolder
+    {
+        /** Instance unique non préinitialisée */
+        private final static Items instance = new Items();
+    }
+
+    /** Point d'accès pour l'instance unique du singleton */
+    public static Items getInstance()
+    {
+        return SingletonHolder.instance;
     }
 
     public List<Item> getItems() {

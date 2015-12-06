@@ -16,7 +16,7 @@ import java.util.List;
 public class HeroesList {
     private List<Heroes> listHeroes = new ArrayList<Heroes>();
 
-    public HeroesList(){
+    private HeroesList(){
         loadList();
     }
 
@@ -38,6 +38,19 @@ public class HeroesList {
 
     }
 
+    /** Holder */
+    private static class SingletonHolder
+    {
+        /** Instance unique non préinitialisée */
+        private final static HeroesList instance = new HeroesList();
+    }
+
+    /** Point d'accès pour l'instance unique du singleton */
+    public static HeroesList getInstance()
+    {
+        return SingletonHolder.instance;
+    }
+
     public void display()
     {
         for(Heroes h : listHeroes)
@@ -47,5 +60,13 @@ public class HeroesList {
     }
     public List<Heroes> getListHeroes() {
         return listHeroes;
+    }
+
+    public Heroes getHero(int heroId){
+        for(Heroes h : listHeroes){
+            if(h.getId() == heroId)
+                return h;
+        }
+        return null;
     }
 }

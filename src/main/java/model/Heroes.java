@@ -55,4 +55,10 @@ public class Heroes {
     public String getClearName() {
         return clearName;
     }
+    public String getImagePath(){
+        DotaReader reader = new DotaReader();
+        String imgPath = Constant.IMG_FOLDER + name;
+        reader.download(imgUrl,imgPath);
+        return imgPath;
+    }
 }
